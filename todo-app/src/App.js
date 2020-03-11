@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ToDoList from './ToDoList';
+import Moment from 'react-moment';
+import moment from 'moment';
 
 
 class App extends Component {
@@ -24,6 +26,13 @@ class App extends Component {
     this.setState({completedIndexes: [...this.state.completedIndexes, index]});
     // this.render();
   } 
+  
+  // handleComplete = (timeStamp) => {
+  //   let indexToUpdate = this.state.todos.findIndex(element => element.timeStamp === timeStamp)
+  //   this.setState({todos: todos[indexToUpdate]})
+  //   this.setState({completedIndexes: [...this.state.completedIndexes, index]});
+  //   // this.render();
+  // } 
 
   handleUnfinished = (index) => {
     let indexToSplice = this.state.completedIndexes.findIndex(element => element === index);
@@ -44,7 +53,7 @@ class App extends Component {
   formSubmit = event => {
     event.preventDefault();
     this.setState({
-      todos: [...this.state.todos, this.state.input],
+      todos: [...this.state.todos, {text:this.state.input, timeStamp: moment().format('YYYY-MM-DD HH:mm:ss')}],
       input: ''
     })
   }
@@ -59,8 +68,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          <h1><Moment format="LL - LT" /></h1>
           <img src={logo} className="App-logo" alt="logo" />
-          <h1>Hello World, From Patrick</h1>
+          <h1>What do you need to do today? </h1>
           <form onSubmit={this.formSubmit}>
             <input value={this.state.input} onChange={this.inputChange} />
             <button onClick = {this.toggle} type="submit">Submit</button>
@@ -79,3 +89,34 @@ class App extends Component {
 }
 
 export default App;
+
+
+// import React, {Component} from 'react';
+// import logo from './logo.svg';
+// import './App.css';
+
+
+// class App extends Component {
+//   constructor(props){
+//     super(props)
+
+
+//     this.state = {
+//       input: '',
+//       todos: [{timestamp: 'YYYY-MM-HH'}],
+//       completedIndexes: []
+//     }
+//   }
+
+//   render(){
+//     return (
+//       <div className="App">
+//         <header className="App-header">
+//           <img src={logo} className="App-logo" alt="logo" />
+//           {this.state.todos[0].timestamp}
+
+//         </header>
+//       </div>
+//     );
+//   }
+// }
