@@ -21,8 +21,6 @@ class App extends Component {
       isOn: false,
       input: '',
       todos: [],
-      clientId: clientId,
-      address: address,
       completedIndexes: []
     }
   }
