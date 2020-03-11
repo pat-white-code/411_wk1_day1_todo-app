@@ -4,10 +4,6 @@ import './App.css';
 import ToDoList from './ToDoList';
 
 
-
-let clientId = 1;
-let address = 1;
-
 class App extends Component {
   constructor(props){
     super(props)
@@ -18,14 +14,10 @@ class App extends Component {
     this.handleUnfinished = this.handleUnfinished.bind(this);
 
     this.state = {
-      isOn: false,
       input: '',
       todos: [],
       completedIndexes: []
     }
-  }
-  toggle = () => {
-    this.setState({isOn: !this.state.isOn}) 
   }
 
   handleComplete = (index) => {
@@ -34,7 +26,7 @@ class App extends Component {
   } 
 
   handleUnfinished = (index) => {
-    let indexToSplice = this.state.completedIndexes.findIndex(element => element == index);
+    let indexToSplice = this.state.completedIndexes.findIndex(element => element === index);
     this.state.completedIndexes.splice(indexToSplice, 1);
     this.setState({completedIndexes: [...this.state.completedIndexes]})
   }
