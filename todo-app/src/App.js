@@ -73,7 +73,7 @@ class App extends Component {
           <h1>What do you need to do today? </h1>
           <form onSubmit={this.formSubmit}>
             <input value={this.state.input} onChange={this.inputChange} />
-            <button onClick = {this.toggle} type="submit">Submit</button>
+            <button type="submit">Submit</button>
           </form>
           <ToDoList 
             todos={this.state.todos} 
